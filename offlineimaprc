@@ -1,0 +1,30 @@
+[general]
+accounts = myaccount
+ui = Basic
+
+[Account myaccount]
+localrepository = mylocal
+remoterepository = myremote
+#多少分钟刷新一次
+autorefresh = 2
+#取回多少天内的邮件
+#maxage = 30
+
+[Repository mylocal]
+type = Maildir
+#本地邮件文件夹
+localfolders = ~/Mail
+
+[Repository myremote]
+type = Gmail
+remoteuser = #USERNAME#@gmail.com
+remotepass = #PASSWORD#
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+maxconnections = 2
+readonly = False
+#该值为yes时，删除本地会同步删除服务器上的邮件
+realdelete = no
+idlefolders = ['INBOX', '[Gmail]/Important']
+#忽略哪些文件夹
+folderfilter = lambda foldername: foldername not in '[Gmail]/All Mail'
+

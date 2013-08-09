@@ -1,0 +1,89 @@
+set realname='#REALNAME#'
+set sendmail='/usr/bin/msmtp'
+set from="#USERNAME#@gmail.com"
+set use_from=yes
+set folder="~/Mail"
+set mbox="~/Mail/INBOX"
+set mbox_type=Maildir
+set spoolfile="~/Mail/INBOX" #默认信箱
+set record="~/Mail/[Gmail].Sent Mail"
+set header_cache=~/Mail/.hcache
+set postponed="~/Mail/[Gmail].Drafts"
+mailboxes "=INBOX"
+
+source ~/.mutt/alias
+set alias_file=~/.mutt/alias
+
+set charset="utf8"
+set locale="zh_CN.UTF-8"
+set send_charset="utf-8:us-ascii:iso-8859-1:gb2312"
+set assumed_charset="utf-8:gb2312:gbk"
+charset-hook ^us-ascii$ gb2312
+charset-hook ^iso-8859-1$ gb2312
+charset-hook !utf-8 gb2312
+
+set check_new = yes
+set timeout = 600
+
+set edit_headers=no
+set quit=ask-yes
+set ascii_chars=yes
+#回信不引用信件头
+set header=no
+#回信时是否包含原文。
+set include
+#回信的引文之前插入哪个符号
+set indent_str="> "
+#给邮件评分
+#新信件+4分，, ，，(垃圾广告！)。
+score "~N" +4
+#主题包含“通知”的+2
+score "~s 通知" +2
+#主题包含 “密码” +3
+score "~s 密码" +3
+#已经标记删除的 -5
+score "~D" -5
+#上次没有读的 +1
+score "~O" +1
+#标题包含“(AD)”的垃圾邮件-10
+score "~s (AD)" -10
+#排序方式。
+set sort=score
+#当用 thread 排序方式时，我们对各个 thread 的相对排序顺序。
+set sort_aux=date
+#如果翻到最后，再按往下翻也不会翻到下一封信件
+set pager_stop
+#按 "r" 回信时直接进入编辑模式。
+set fast_reply
+#标记操作时把光标移动到下一封信件。
+#set resolve=yes
+#外部程序退出时，是否要求用户按一个键才返回
+set wait_key=yes
+
+
+#按键设置为vi风格
+bind pager G bottom
+bind pager j next-line
+bind pager <DOWN> next-line
+bind pager k previous-line
+bind pager <UP> previous-line
+bind pager \cf next-page
+bind pager \cb previous-page
+bind pager \cj next-entry
+bind pager \ck previous-entry
+bind pager gg top
+bind pager G bottom
+bind index gg first-entry
+bind index G last-entry
+bind index R group-reply
+bind index \cf next-page
+bind index \cb previous-page
+bind index } bottom-page
+bind index f change-folder
+
+#autoview
+auto_view text/html
+auto_view text/html application/msword
+
+#调用火狐显示附件
+macro attach	\cW	"s/tmp/mutt\n<Enter>!firefox /tmp/mutt && rm /tmp/mutt\n"
