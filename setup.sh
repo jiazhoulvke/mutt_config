@@ -31,6 +31,7 @@ touch ~/.mutt/alias
 sed "s/#USERNAME#/${USERNAME}/g;s/#REALNAME#/${REALNAME}/g" ~/.mutt_config/muttrc > ~/.mutt/muttrc
 sed "s/#USERNAME#/${USERNAME}/g;s/#PASSWORD#/${PASSWORD}/g" ~/.mutt_config/msmtprc > ~/.msmtprc
 sed "s/#USERNAME#/${USERNAME}/g;s/#PASSWORD#/${PASSWORD}/g" ~/.mutt_config/offlineimaprc > ~/.offlineimaprc
+chmod 600 ~/.msmtprc
 cp ~/.mutt_config/mailcap ~/.mailcap
 
 #安装完毕
