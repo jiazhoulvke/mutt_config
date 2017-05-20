@@ -4,8 +4,7 @@
 ###########################################################
 
 #检测是否安装了所需的软件
-if [ $1 != "-f" ]; then
-    type abckdfdf >/dev/null 2>&1 || { echo >&2 "没有安装abc"; exit 1; }
+if [[ $1 != "-f" ]]; then
     type mutt >/dev/null 2>&1 || { echo >&2 "没有安装mutt"; exit 1; }
     type offlineimap >/dev/null 2>&1 || { echo >&2 "没有安装offlineimap"; exit 1; }
     type msmtp >/dev/null 2>&1 || { echo >&2 "没有安装msmtp"; exit 1; }
